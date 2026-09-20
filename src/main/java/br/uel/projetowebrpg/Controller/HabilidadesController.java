@@ -1,7 +1,7 @@
 package br.uel.projetowebrpg.Controller;
 
 import br.uel.projetowebrpg.Model.Habilidade;
-import br.uel.projetowebrpg.Service.ContactService;
+import br.uel.projetowebrpg.Service.HabilidadeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,25 +11,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/contatos")
-public class ContactController {
+@RequestMapping("/registro_habilidades")
+public class HabilidadesController {
 
-    private final ContactService service;
+    private final HabilidadeService service;
 
     @Autowired
-    public ContactController(ContactService service){
+    public HabilidadesController(HabilidadeService service){
         this.service = service;
     }
 
     @GetMapping
     public ResponseEntity<List<Habilidade>> listar(){
-        return ResponseEntity.ok(service.listarContatos());
+        return ResponseEntity.ok(service.listarHabilidades());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Habilidade> buscar(@PathVariable Long id){
         try{
-            return ResponseEntity.ok(service.buscarContato(id));
+            return ResponseEntity.ok(service.buscarHabilidade(id));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
@@ -37,14 +37,14 @@ public class ContactController {
 
     @PostMapping
     public ResponseEntity<Habilidade> adicionar(@Valid @RequestBody Habilidade c){
-        service.adicionarContato(c);
+        service.adicionarHabilidade(c);
         return ResponseEntity.status(HttpStatus.CREATED).body(c);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Habilidade> remover(@PathVariable Long id){
         try{
-            service.removerContato(id);
+            service.removerHabilidade(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
 
@@ -57,7 +57,7 @@ public class ContactController {
     public ResponseEntity<Habilidade> atualizar(@PathVariable Long id, @Valid @RequestBody Habilidade c){
 
         try{
-            service.atualizarContato(id, c);
+            service.atualizarHabilidade(id, c);
             return ResponseEntity.ok(c);
         }
 

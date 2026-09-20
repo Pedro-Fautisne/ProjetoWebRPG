@@ -1,84 +1,67 @@
 package br.uel.projetowebrpg.Model;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "clientes")
-public class Contact {
+@Table(name = "habilidades")
+public class Habilidade {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "o campo nome não pode estar em branco")
+    @NotBlank(message = "é obrigatório que a habilidade tenha um nome")
     @Size(max = 100, message = "O nome deve ter no máximo 100 caracteres")
     private String nome;
 
-    @NotBlank(message = "o campo telefone não pode estar em branco")
-    @Size(max = 14, message = "o telefone não deve passar de 14 caracteres")
-    private String telefone;
+    @NotBlank(message = "o campo tipo da habilidade é obrigatório")
+    private String tipo;
 
-    @NotBlank(message = "o email é um campo obrigatório")
-    @Size(max = 150, message = "o email não deve passar de 150 caracteres")
-    @Email(message = "digite um email válido")
-    private String email;
+    @Size(max = 100, message = "o pre_requesito(s) não deve passar de 100 caracteres")
+    private String pre_requesitos;
 
-    private String endereco;
+    @NotBlank(message = "o campo descrição é obrigayório")
+    private String descricao;
 
-    @DateTimeFormat
-    private LocalDate dataNascimento;
-
-    public Contact(String nome, String telefone, String email, String endereco, LocalDate dataNascimento){
+    public Habilidade(String nome, String tipo, String pre_requesitos, String descricao){
         this.nome = nome;
-        this.telefone = telefone;
-        this.email = email;
-        this.endereco = endereco;
-        this.dataNascimento = dataNascimento;
+        this.tipo = tipo;
+        this.pre_requesitos = pre_requesitos;
+        this.descricao = descricao;
     }
 
-    public Contact(){}
+    public Habilidade(){}
 
     public String getNome(){
         return this.nome;
     }
 
-    public String getTelefone() {
-        return this.telefone;
+    public String getTipo(){ return this.tipo;}
+
+    public String getPre_requesitos() {
+        return this.pre_requesitos;
     }
 
-    public String getEmail() {
-        return this.email;
-    }
-
-    public String getEndereco() {
-        return this.endereco;
-    }
-
-    public LocalDate getDataNascimento() {
-        return this.dataNascimento;
+    public String getDescricao() {
+        return this.descricao;
     }
 
     public void setNome(String nome){
         this.nome = nome;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPre_requesitos(String pre_requesitos) {
+        this.pre_requesitos = pre_requesitos;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public void setDataNascimento(LocalDate dataNascimento){
-        this.dataNascimento = dataNascimento;
-    }
 }
