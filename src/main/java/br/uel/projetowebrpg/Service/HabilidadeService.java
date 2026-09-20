@@ -1,6 +1,6 @@
 package br.uel.projetowebrpg.Service;
 
-import br.uel.projetowebrpg.Model.Contact;
+import br.uel.projetowebrpg.Model.Habilidade;
 import br.uel.projetowebrpg.Repository.ContactRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,16 +11,16 @@ public class ContactService {
     @Autowired
     private ContactRepository contactRepository;
 
-    public List<Contact> listarContatos(){
+    public List<Habilidade> listarContatos(){
         return contactRepository.findAll();
     }
 
-    public Contact buscarContato(Long id){
+    public Habilidade buscarContato(Long id){
         return contactRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Contato com id " + id + " não encontrado"));
     }
 
-    public void adicionarContato(Contact c){
+    public void adicionarContato(Habilidade c){
         contactRepository.save(c);
     }
 
@@ -34,7 +34,7 @@ public class ContactService {
         }
     }
 
-    public void atualizarContato(Long id, Contact contato_atualizado) {
+    public void atualizarContato(Long id, Habilidade contato_atualizado) {
         contactRepository.findById(id)
                 .map(c -> {
                     c.setNome(contato_atualizado.getNome());

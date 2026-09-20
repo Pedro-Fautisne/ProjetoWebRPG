@@ -1,6 +1,6 @@
 package br.uel.projetowebrpg.Controller;
 
-import br.uel.projetowebrpg.Model.Contact;
+import br.uel.projetowebrpg.Model.Habilidade;
 import br.uel.projetowebrpg.Service.ContactService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +22,12 @@ public class ContactController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Contact>> listar(){
+    public ResponseEntity<List<Habilidade>> listar(){
         return ResponseEntity.ok(service.listarContatos());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Contact> buscar(@PathVariable Long id){
+    public ResponseEntity<Habilidade> buscar(@PathVariable Long id){
         try{
             return ResponseEntity.ok(service.buscarContato(id));
         } catch (RuntimeException e) {
@@ -36,13 +36,13 @@ public class ContactController {
     }
 
     @PostMapping
-    public ResponseEntity<Contact> adicionar(@Valid @RequestBody Contact c){
+    public ResponseEntity<Habilidade> adicionar(@Valid @RequestBody Habilidade c){
         service.adicionarContato(c);
         return ResponseEntity.status(HttpStatus.CREATED).body(c);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Contact> remover(@PathVariable Long id){
+    public ResponseEntity<Habilidade> remover(@PathVariable Long id){
         try{
             service.removerContato(id);
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
@@ -54,7 +54,7 @@ public class ContactController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Contact> atualizar(@PathVariable Long id, @Valid @RequestBody Contact c){
+    public ResponseEntity<Habilidade> atualizar(@PathVariable Long id, @Valid @RequestBody Habilidade c){
 
         try{
             service.atualizarContato(id, c);
