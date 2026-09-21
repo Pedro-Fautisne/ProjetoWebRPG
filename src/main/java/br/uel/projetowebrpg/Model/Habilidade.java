@@ -22,7 +22,7 @@ public class Habilidade {
     @Size(max = 100, message = "o pre_requesito(s) não deve passar de 100 caracteres")
     private String pre_requesitos;
 
-    @NotBlank(message = "o campo descrição é obrigayório")
+    @NotBlank(message = "o campo descrição é obrigatório")
     private String descricao;
 
     public Habilidade(String nome, String tipo, String pre_requesitos, String descricao){
