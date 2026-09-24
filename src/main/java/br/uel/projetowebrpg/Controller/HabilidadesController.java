@@ -26,7 +26,7 @@ public class HabilidadesController {
     @GetMapping
     public String listar(Model model){
         model.addAttribute("lista de habilidades", service.listarHabilidades());
-        return "habilidades/todas";
+        return "habilidades/lista";
     }
 
     @GetMapping("/nova")
@@ -36,23 +36,27 @@ public class HabilidadesController {
     }
 
     @PostMapping
-    public String cadastrar(@Valid @ModelAttribute Habilidade h, BindingResult erros, RedirectAttributes re){
-        if(erros.hasErrors()){
-            return "habilidades/formulario";
+    public String cadastrar(@Valid @ModelAttribute("habilidade") Habilidade h, BindingResult erros, RedirectAttributes re){
+
+        if (service.habilidadeJaExiste(h)){
+            erros.rejectValue("nome", "nome.duplicado", "Opa meu cupincha, parece" +
+                    " que já existe uma habilidade com esse nome");
         }
 
-        //verificar se a hablidade nova não tem o mesmo nome que outra
+        if(erros.hasErrors()){
+            return "redirect:/habilidades";
+        }
 
         service.adicionarHabilidade(h);
         re.addFlashAttribute("msg", "Bah que irado! sua nova habilidade foi cadastrada");
-        return "redirect:/todas";
+        return "redirect:/habilidades";
     }
 
     @DeleteMapping("/{id}")
     public String remover(@PathVariable Long id, RedirectAttributes re){
         try{
             service.removerHabilidade(id);
-            re.addFlashAttribute("msg", "Que pena que você excluiu sua habilidade :(");
+            re.addFlashAttribute("msg", "Habilidade removida com sucesso!");
             return "redirect:/habilidades";
         }
 
@@ -81,15 +85,19 @@ public class HabilidadesController {
     }
 
     @PutMapping("/{id}")
-    public String editar(@PathVariable Long id, @Valid @ModelAttribute Habilidade h, BindingResult erros,
-                         RedirectAttributes re){
+    public String editar(@PathVariable Long id, @Valid @ModelAttribute("habilidade") Habilidade atualizada,
+                         BindingResult erros, RedirectAttributes re){
+
+        if (service.habilidadeJaExiste(atualizada)){
+            erros.rejectValue("nome", "nome.duplicado", "Opa meu cupincha, parece" +
+                    " que já existe uma habilidade com esse nome");
+        }
+
         if(erros.hasErrors()){
             return "habilidades/formulario";
         }
 
-        //verificar se a hablidade atualizada não tem o mesmo nome de outra
-
-        service.atualizarHabilidade(id, h);
+        service.atualizarHabilidade(id, atualizada);
         re.addFlashAttribute("msg", "Que massa! você atualizou a sua habilidade");
         return "redirect:/habilidades";
     }

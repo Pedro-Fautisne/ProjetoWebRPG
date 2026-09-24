@@ -46,4 +46,8 @@ public class HabilidadeService {
                 .orElseThrow(() -> new RuntimeException("Habilidade com id " + id + " não encontrado"));
     }
 
+    public boolean habilidadeJaExiste(Habilidade h){
+        return repository.existsHabilidadeByNomeAndIdNot(h.getNome(), h.getId());
+    }
+
 }

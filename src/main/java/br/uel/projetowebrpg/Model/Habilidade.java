@@ -34,6 +34,8 @@ public class Habilidade {
 
     public Habilidade(){}
 
+    public Long getId(){ return this.id;}
+
     public String getNome(){
         return this.nome;
     }
