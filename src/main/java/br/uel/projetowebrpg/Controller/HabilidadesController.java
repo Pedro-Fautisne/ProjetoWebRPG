@@ -25,7 +25,7 @@ public class HabilidadesController {
 
     @GetMapping
     public String listar(Model model){
-        model.addAttribute("lista de habilidades", service.listarHabilidades());
+        model.addAttribute("habilidades", service.listarHabilidades());
         return "habilidades/lista";
     }
 

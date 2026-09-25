@@ -39,7 +39,7 @@ public class HabilidadeService {
                 .map(h -> {
                     h.setNome(habilidade_atualizada.getNome());
                     h.setTipo(habilidade_atualizada.getTipo());
-                    h.setPre_requesitos(habilidade_atualizada.getPre_requesitos());
+                    h.setPre_requisitos(habilidade_atualizada.getPre_requisitos());
                     h.setDescricao(habilidade_atualizada.getDescricao());
                     return repository.save(h);
                 })

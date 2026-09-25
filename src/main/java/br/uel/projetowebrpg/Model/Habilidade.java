@@ -3,8 +3,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-import java.time.LocalDate;
-
 @Entity
 @Table(name = "habilidades")
 public class Habilidade {
@@ -19,16 +17,16 @@ public class Habilidade {
     @NotBlank(message = "o campo tipo da habilidade é obrigatório")
     private String tipo;
 
-    @Size(max = 100, message = "o pre_requesito(s) não deve passar de 100 caracteres")
-    private String pre_requesitos;
+    @Size(max = 100, message = "o pre_requisito(s) não deve passar de 100 caracteres")
+    private String pre_requisitos;
 
     @NotBlank(message = "o campo descrição é obrigatório")
     private String descricao;
 
-    public Habilidade(String nome, String tipo, String pre_requesitos, String descricao){
+    public Habilidade(String nome, String tipo, String pre_requisitos, String descricao){
         this.nome = nome;
         this.tipo = tipo;
-        this.pre_requesitos = pre_requesitos;
+        this.pre_requisitos = pre_requisitos;
         this.descricao = descricao;
     }
 
@@ -42,8 +40,8 @@ public class Habilidade {
 
     public String getTipo(){ return this.tipo;}
 
-    public String getPre_requesitos() {
-        return this.pre_requesitos;
+    public String getPre_requisitos() {
+        return this.pre_requisitos;
     }
 
     public String getDescricao() {
@@ -58,8 +56,8 @@ public class Habilidade {
         this.tipo = tipo;
     }
 
-    public void setPre_requesitos(String pre_requesitos) {
-        this.pre_requesitos = pre_requesitos;
+    public void setPre_requisitos(String pre_requisitos) {
+        this.pre_requisitos = pre_requisitos;
     }
 
     public void setDescricao(String descricao) {
