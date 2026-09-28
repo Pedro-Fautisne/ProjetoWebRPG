@@ -36,7 +36,8 @@ public class HabilidadesController {
     }
 
     @PostMapping
-    public String cadastrar(@Valid @ModelAttribute("habilidade") Habilidade h, BindingResult erros, RedirectAttributes re){
+    public String cadastrar(@Valid @ModelAttribute("habilidade") Habilidade h, BindingResult erros,
+                            RedirectAttributes re){
 
         if (service.habilidadeJaExiste(h)){
             erros.rejectValue("nome", "nome.duplicado", "Opa meu cupincha, parece" +
@@ -44,7 +45,7 @@ public class HabilidadesController {
         }
 
         if(erros.hasErrors()){
-            return "redirect:/habilidades";
+            return "habilidades/formulario";
         }
 
         service.adicionarHabilidade(h);
