@@ -3,6 +3,7 @@ package br.uel.projetowebrpg.Service;
 import br.uel.projetowebrpg.Model.Habilidade;
 import br.uel.projetowebrpg.Repository.HabilidadesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -13,6 +14,19 @@ public class HabilidadeService {
 
     public List<Habilidade> listarHabilidades(){
         return repository.findAll();
+    }
+
+    public List<Habilidade> listarOrdenado(String campo, String direcao) {
+        if (campo == null || campo.isEmpty()) {
+            return repository.findAll();
+        }
+
+        Sort.Direction ordenacao = direcao.equalsIgnoreCase("desc")
+                ? Sort.Direction.DESC : Sort.Direction.ASC;
+
+        Sort sort = Sort.by(ordenacao, campo);
+
+        return repository.findAll(sort);
     }
 
     public Habilidade buscarHabilidade(Long id){

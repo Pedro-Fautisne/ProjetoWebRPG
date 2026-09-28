@@ -13,6 +13,25 @@
 
     <!−− Tabela −−>
     <table>
+        <thead>
+        <tr>
+            <th>
+                <a th:href="@{/habilidades(campo='nome', dir=${reverseDir})}">Nome</a>
+            </th>
+            <th>
+                <a th:href="@{/habilidades(campo='tipo', dir=${reverseDir})}">Tipo</a>
+            </th>
+            <th>
+                <a th:href="@{/habilidades(campo='pre_requisitos', dir=${reverseDir})}">Pré-Requisitos</a>
+            </th>
+            <th>
+                <a th:href="@{/habilidades(campo='descricao', dir=${reverseDir})}">Descrição</a>
+            </th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
         <tr>
             <th>Nome</th> <th>Tipo</th> <th>Pré-Requisitos</th> <th>Descrição</th> <th>Ações</th>
         </tr>
@@ -32,6 +51,7 @@
                 </form>
             </td>
         </tr>
+        </tbody>
     </table>
 </body>
 </html>

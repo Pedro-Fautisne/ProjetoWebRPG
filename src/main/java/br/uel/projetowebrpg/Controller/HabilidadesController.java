@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -24,8 +25,17 @@ public class HabilidadesController {
     }
 
     @GetMapping
-    public String listar(Model model){
-        model.addAttribute("habilidades", service.listarHabilidades());
+    public String listar(
+            @RequestParam(value = "campo", required = false) String campo,
+            @RequestParam(value = "dir", required = false, defaultValue = "asc") String direcao,
+            Model model) {
+
+        List<Habilidade> lista = service.listarOrdenado(campo, direcao);
+        model.addAttribute("habilidades", lista);
+
+        String reverseDir = direcao.equals("asc") ? "desc" : "asc";
+        model.addAttribute("reverseDir", reverseDir);
+
         return "habilidades/lista";
     }
 
