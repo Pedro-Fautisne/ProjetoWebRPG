@@ -35,6 +35,7 @@
           th:action="@{/habilidades/{id}(id=${habilidade.id})}" method="post"
           th:object="${habilidade}">
         <input type="hidden" name="_method" value="put"/>
+        <input type="hidden" th:field="*{id}" />
 
         <label for="nome1">Nome:</label>
         <input th:field="*{nome}" id="nome1" type="text" required><br>

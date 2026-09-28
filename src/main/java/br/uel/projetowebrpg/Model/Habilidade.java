@@ -64,4 +64,6 @@ public class Habilidade {
         this.descricao = descricao;
     }
 
+    public void setId(Long id){this.id = id;}
+
 }

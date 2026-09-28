@@ -47,7 +47,7 @@ public class HabilidadeService {
     }
 
     public boolean habilidadeJaExiste(Habilidade h){
-        return repository.existsHabilidadeByNomeAndIdNot(h.getNome(), h.getId());
+        return repository.existsByNomeAndIdNot(h.getNome(), h.getId());
     }
 
 }

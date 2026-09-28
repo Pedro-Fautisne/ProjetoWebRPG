@@ -89,6 +89,8 @@ public class HabilidadesController {
     public String editar(@PathVariable Long id, @Valid @ModelAttribute("habilidade") Habilidade atualizada,
                          BindingResult erros, RedirectAttributes re){
 
+        atualizada.setId(id);
+
         if (service.habilidadeJaExiste(atualizada)){
             erros.rejectValue("nome", "nome.duplicado", "Opa meu cupincha, parece" +
                     " que já existe uma habilidade com esse nome");
