@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulário - Habilidade</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384−sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
     <h1 th:text="${habilidade.id} != null ? 'Editar Habilidade' : 'Nova Habilidade'"></h1>
@@ -16,17 +17,17 @@
         <label for="tipo">Tipo:</label>
         <input th:field="*{tipo}" id="tipo" type="text" required><br>
 
-        <label for="pre_requisitos">Pré-Requisitos:</label>
-        <input th:field="*{pre_requisitos}" id="pre_requisitos" type="text"><br>
+        <label for="requisitos">Pré-Requisitos:</label>
+        <input th:field="*{requisitos}" id="requisitos" type="text"><br>
 
         <label for="descricao">Descrição:</label>
         <input th:field="*{descricao}" id="descricao" type="text" required><br>
 
         <!−− Erros por campo (mensagens do Bean Validation) −−>
-        <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
-        <div th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></div>
-        <div th:if="${#fields.hasErrors('pre_requisitos')}" th:errors="*{pre_requisitos}"></div>
-        <div th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></div>
+        <span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+        <span th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></span><br>
+        <span th:if="${#fields.hasErrors('requisitos')}" th:errors="*{requisitos}"></span>
+        <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
         <button type="submit">Cadastrar</button>
         <a th:href="@{/habilidades}">Cancelar</a>
     </form>
@@ -35,7 +36,7 @@
           th:action="@{/habilidades/{id}(id=${habilidade.id})}" method="post"
           th:object="${habilidade}">
         <input type="hidden" name="_method" value="put"/>
-        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{id}"/>
 
         <label for="nome1">Nome:</label>
         <input th:field="*{nome}" id="nome1" type="text" required><br>
@@ -43,8 +44,8 @@
         <label for="tipo1">Tipo:</label>
         <input th:field="*{tipo}" id="tipo1" type="text" required><br>
 
-        <label for="pre_requisitos1">Pré-Requisitos:</label>
-        <input th:field="*{pre_requisitos}" id="pre_requisitos1" type="text"><br>
+        <label for="requisitos1">Pré-Requisitos:</label>
+        <input th:field="*{requisitos}" id="requisitos1" type="text"><br>
 
         <label for="descricao1">Descrição:</label>
         <input th:field="*{descricao}" id="descricao1" type="text" required><br>
@@ -52,10 +53,11 @@
         <!−− Erros por campo (mensagens do Bean Validation) −−>
         <div th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></div>
         <div th:if="${#fields.hasErrors('tipo')}" th:errors="*{tipo}"></div>
-        <div th:if="${#fields.hasErrors('pre_requisitos')}" th:errors="*{pre_requisitos}"></div>
+        <div th:if="${#fields.hasErrors('requisitos')}" th:errors="*{requisitos}"></div>
         <div th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></div>
         <button type="submit">Atualizar</button>
         <a th:href="@{/clientes}">Cancelar</a>
     </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384−FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"> </script>
 </body>
 </html>

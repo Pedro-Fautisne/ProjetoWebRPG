@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt−BR" xmlns:th="http://www.thymeleaf.org">
 
-<head><meta charset="UTF−8"><title>Habilidades − Lista</title></head>
+<head><meta charset="UTF−8"><title>Habilidades − Lista</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384−sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+</head>
 
 <body>
     <h1>Habilidades</h1>
 
     <!−− Mensagem de sucesso −−>
     <p th:if="${msg}" th:text="${msg}"></p>
+    <p th:if="${erromsg}" th:text="${erromsg}"></p>
 
     <p><a th:href="@{/habilidades/nova}">Nova Habilidade</a></p>
 
@@ -22,7 +27,7 @@
                 <a th:href="@{/habilidades(campo='tipo', dir=${reverseDir})}">Tipo</a>
             </th>
             <th>
-                <a th:href="@{/habilidades(campo='pre_requisitos', dir=${reverseDir})}">Pré-Requisitos</a>
+                <a th:href="@{/habilidades(campo='requisitos', dir=${reverseDir})}">Requisitos</a>
             </th>
             <th>
                 <a th:href="@{/habilidades(campo='descricao', dir=${reverseDir})}">Descrição</a>
@@ -32,13 +37,10 @@
         </thead>
 
         <tbody>
-        <tr>
-            <th>Nome</th> <th>Tipo</th> <th>Pré-Requisitos</th> <th>Descrição</th> <th>Ações</th>
-        </tr>
         <tr th:each="h : ${habilidades}">
             <td th:text="${h.nome}"></td>
             <td th:text="${h.tipo}"></td>
-            <td th:text="${h.pre_requisitos}"></td>
+            <td th:text="${h.requisitos}"></td>
             <td th:text="${h.descricao}"></td>
             <td>
                 <form th:action="@{/habilidades/editar/{id}(id=${h.id})}"
@@ -53,5 +55,6 @@
         </tr>
         </tbody>
     </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384−FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"> </script>
 </body>
 </html>

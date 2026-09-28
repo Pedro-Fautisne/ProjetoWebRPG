@@ -49,7 +49,7 @@ public class HabilidadesController {
     public String cadastrar(@Valid @ModelAttribute("habilidade") Habilidade h, BindingResult erros,
                             RedirectAttributes re){
 
-        if (service.habilidadeJaExiste(h)){
+        if (service.habilidadeJaExiste(h) ){
             erros.rejectValue("nome", "nome.duplicado", "Opa meu cupincha, parece" +
                     " que já existe uma habilidade com esse nome");
         }
